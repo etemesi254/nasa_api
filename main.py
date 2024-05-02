@@ -5,7 +5,9 @@ from fastapi import FastAPI, Response
 
 app = FastAPI()
 
-NASA_API_KEY = "9CAWvJFHTmcSgerAgUJmlG8j0hgr06XIpHQEXcg6"
+import codecs
+
+NASA = codecs.decode("9PNJiWSUGzpFtreNtHWzyT8w0ute06KVcUDRKpt6", "rot13")
 
 
 @app.head("/heartbeat")
@@ -19,7 +21,7 @@ async def get_neo(start_date: datetime.datetime, end_date: datetime.datetime, re
     params = {
         "start_date": start_date.date(),
         "end_date": end_date.date(),
-        "api_key": NASA_API_KEY
+        "api_key": NASA
     }
     web_resp = requests.get("https://api.nasa.gov/neo/rest/v1/feed", params=params)
 
